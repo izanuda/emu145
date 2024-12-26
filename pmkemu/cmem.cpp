@@ -2,9 +2,13 @@
 
 cMem::cMem()
 {
-    int i;
-    for(i=0;i<MEM_BITLEN;i++)
-        memarray[i]=false;
+    clear();
+}
+
+void cMem::clear()
+{
+    for(int i = 0; i < MEM_BITLEN; ++i)
+        memarray[i] = false;
 }
 
 bool cMem::pretick()

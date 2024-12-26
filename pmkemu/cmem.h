@@ -7,6 +7,8 @@ class cMem
 {
 public:
     cMem();
+
+    void clear();
     bool pretick(void);
     bool tick(bool rm);
 
