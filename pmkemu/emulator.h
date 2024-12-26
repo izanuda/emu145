@@ -20,7 +20,7 @@ public:
     virtual void run();
 
 signals:
-    void on_sync(QByteArray * disp);
+    void on_sync(const QByteArray &disp);
 
 
 public slots:

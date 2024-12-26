@@ -236,15 +236,14 @@ void emulator::run()
 
                 if((dcycle>1)&&(dcycle<14))
                 {
-                 display[dcycle-2]=seg;
+                    display[dcycle-2]=seg;
                 }
 
 
 
                 if(sync)
                 {
-
-                    QByteArray * arr=new QByteArray((const char*)display,12);
+                    QByteArray arr((const char*)display, 12);
                     emit on_sync(arr);
                 }
             }
@@ -252,7 +251,7 @@ void emulator::run()
             {
                 if(sync)
                 {
-                    QByteArray * arr=new QByteArray(12,0xf);
+                    QByteArray arr(12, 0xf);
                     emit on_sync(arr);
                 }
             }

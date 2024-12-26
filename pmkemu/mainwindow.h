@@ -23,7 +23,7 @@ public slots:
     void OnTimer();
     void on_keypad_clicked();
 
-    void on_sync(QByteArray * disp);
+    void on_sync(const QByteArray &disp);
 
 signals:
     void enable(bool en);

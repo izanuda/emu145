@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     emu=new emulator(this);
 
-    connect(emu,SIGNAL(on_sync(QByteArray*)),this,SLOT(on_sync(QByteArray*)));
+    connect(emu,SIGNAL(on_sync(QByteArray)),this,SLOT(on_sync(QByteArray)));
     connect(this,SIGNAL(step(int)),emu,SLOT(step(int)));
     connect(this,SIGNAL(keypad(uint)),emu,SLOT(keypad(uint)));
     connect(this,SIGNAL(enable(bool)),emu,SLOT(enable(bool)));
@@ -107,7 +107,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     emu->enable(false);
-    disconnect(this,SLOT(on_sync(QByteArray*)));
+    disconnect(this,SLOT(on_sync(QByteArray)));
     timer->stop();
     emu->deleteLater();
     //delete emu;
@@ -143,10 +143,10 @@ void MainWindow::updatedisp()
     ui->lcdNumber->display(disp);
 }
 
-void MainWindow::on_sync(QByteArray *disp)
+void MainWindow::on_sync(const QByteArray &disp)
 {
-    for(int i=0;i<disp->count();i++)
-        display[i]=disp->at(i);
+    for(int i=0;i<disp.count();i++)
+        display[i]=disp.at(i);
     //int i;
     //for(i=0;i<12;i++)
       //  display[i]=disp[i];
