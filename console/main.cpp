@@ -183,6 +183,7 @@ int main(void)
     puts("emu145 start.\n>");
     do
     {
+        fgets(ibuff, 100, stdin);
         par = 1;
         sscanf(ibuff,"%c%d",&cmd,&par);
         switch (ibuff[0])
