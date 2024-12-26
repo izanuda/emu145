@@ -9,9 +9,9 @@ emulator::emulator(QObject *parent) :
         int i,j;
         enabled=false;
 
-        ik1302=new cMCU(this, "IK1302");
-        ik1303=new cMCU(this, "IK1303");
-        ik1306=new cMCU(this, "IK1306");
+        ik1302=new cMCU("IK1302");
+        ik1303=new cMCU("IK1303");
+        ik1306=new cMCU("IK1306");
         ir2_1=new cMem();
         ir2_2=new cMem();
 
@@ -102,6 +102,20 @@ emulator::emulator(QObject *parent) :
         dbg1306->setL(ik1306->rl);
         dbg1306->setH(ik1306->rh[0]|ik1306->rh[1]<<1|ik1306->rh[2]<<2|ik1306->rh[3]<<3);
         dbg1306->setI(ik1306->icount);
+}
+
+emulator::~emulator()
+{
+    delete dbg1302;
+    delete dbg1303;
+    delete dbg1306;
+
+    delete ik1302;
+    delete ik1303;
+    delete ik1306;
+
+    delete ir2_1;
+    delete ir2_2;
 }
 
 void emulator::enable(bool en)
@@ -238,8 +252,6 @@ void emulator::run()
                 {
                     display[dcycle-2]=seg;
                 }
-
-
 
                 if(sync)
                 {

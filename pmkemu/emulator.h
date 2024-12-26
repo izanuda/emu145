@@ -17,6 +17,8 @@ class emulator : public QThread
     Q_OBJECT
 public:
     explicit emulator(QObject *parent = 0);
+    ~emulator();
+
     virtual void run();
 
 signals:

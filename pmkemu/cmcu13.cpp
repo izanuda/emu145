@@ -15,9 +15,9 @@ const unsigned char jrom[42]={
 };
 
 
-cMCU::cMCU(QObject *parent, QString name,bool debug)
+cMCU::cMCU(const QString &name, bool debug)
 {
-    
+
     int i;
     for(i=0;i<MCU_BITLEN;i++)
     {

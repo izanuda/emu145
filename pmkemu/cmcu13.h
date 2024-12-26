@@ -9,7 +9,8 @@
 #ifndef cmcu13_h
 #define cmcu13_h
 
-#include "cdebugdlg.h"
+#include <QObject>
+#include <QString>
 
 #define MCU_BITLEN  168
 
@@ -54,7 +55,7 @@ typedef union{
 class cMCU
 {
 public:
-    cMCU(QObject *parent, QString name, bool debug=false);
+    cMCU(const QString &name, bool debug = false);
     ~cMCU();
 
     void init();
