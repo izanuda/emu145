@@ -17,8 +17,8 @@ class IK13 : public K145
 public:
     IK13();
 
-    void clk(int phase);
-    const char* about(void);
+    void clk(int phase) override;
+    const char* about(void) const override;
 };
 
 IK13::IK13()
@@ -33,7 +33,7 @@ void IK13::clk(int phase)
     M->clk(phase);
 }
 
-const char* IK13::about(void)
+const char* IK13::about(void) const
 {
     return K145IK13_chip;
 }
@@ -45,8 +45,8 @@ private:
 public:
     IR2();
 
-    void clk(int phase);
-    const char* about(void);
+    void clk(int phase) override;
+    const char* about(void) const override;
 };
 
 IR2::IR2()
@@ -60,7 +60,7 @@ void IR2::clk(int phase)
     M->clk(phase);
 }
 
-const char* IR2::about(void)
+const char* IR2::about(void) const
 {
     return K145IR2_chip;
 }
@@ -77,8 +77,8 @@ public:
     void clk(int qPh);
     void CYCLE(void);              // Генерировать клок на протяжении цикла магистрали комплекта
     void link(K145 *ms);
-    void info(void);   // print information
-    void schem(void);  // print schematic diagram
+    void info(void) const;   // print information
+    void schem(void) const;  // print schematic diagram
 };
 
 
@@ -109,7 +109,7 @@ void CGen::CYCLE(void)
     clk(CYC);
 }
 
-void CGen::info(void)
+void CGen::info(void) const
 {
     char phase[5] = "1234";
 
@@ -135,7 +135,7 @@ void CGen::link(K145 *ms)
     CYC *= 4;
 }
 
-void CGen::schem(void)
+void CGen::schem(void) const
 {
     int count = 1;
     K145 *pChip = TRG;
