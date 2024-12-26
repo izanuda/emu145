@@ -88,10 +88,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->modeSlider,SIGNAL(valueChanged(int)),this,SLOT(on_mode_changed(int)));
     emit set_mode(e_rad);
 
-
-    timer=new QTimer(this);
-    connect(timer,SIGNAL(timeout()),this,SLOT(OnTimer()));
-    //timer->start(25);
     ui->lcdNumber->display("-8.Err0r  -99");
 
     ui->gutsSplitter->setStretchFactor(0, 8);
@@ -108,10 +104,8 @@ MainWindow::~MainWindow()
 {
     emu->enable(false);
     disconnect(this,SLOT(on_sync(QByteArray)));
-    timer->stop();
     emu->deleteLater();
     //delete emu;
-    timer->deleteLater();
     //delete timer;
     delete ui;
 }

@@ -45,8 +45,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QTimer * timer;
-    emulator * emu;
+
+    emulator *emu;
 
     unsigned char display[12];
     int display_blank;
