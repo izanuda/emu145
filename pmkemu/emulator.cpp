@@ -102,19 +102,18 @@ emulator::emulator(QObject *parent) :
         dbg1306->setL(ik1306->rl);
         dbg1306->setH(ik1306->rh[0]|ik1306->rh[1]<<1|ik1306->rh[2]<<2|ik1306->rh[3]<<3);
         dbg1306->setI(ik1306->icount);
-
-
-
 }
 
 void emulator::enable(bool en)
 {
     enabled=en;
 }
+
 void emulator::step(int count)
 {
     ustep=count;
 }
+
 void emulator::debug(bool en)
 {
     if(en!=debugme)
@@ -131,10 +130,8 @@ void emulator::debug(bool en)
             dbg1303->hide();
         }
     }
-
-
-
 }
+
 void emulator::set_mode(mode_e mod)
 {
     mode=mod;
@@ -157,10 +154,10 @@ void emulator::run()
     unsigned int cycle;
     unsigned int maxcycle;
     bool grd;
-    int buttondly;
+    //int buttondly;
 
     //2 ms = real time
-    buttondly=0;
+    //buttondly=0;
 
     while(1)
     {

@@ -1,8 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "cmcu13.h"
-#include "cmem.h"
-
 
 
 const char segments[16]={
@@ -11,12 +8,11 @@ const char segments[16]={
 };
 
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-   int i;
+    int i;
 
     ustep=0;
     btnpressed=0;
@@ -110,7 +106,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-
     emu->enable(false);
     disconnect(this,SLOT(on_sync(QByteArray*)));
     timer->stop();
@@ -146,7 +141,6 @@ void MainWindow::updatedisp()
             disp+=".";
     }
     ui->lcdNumber->display(disp);
-
 }
 
 void MainWindow::on_sync(QByteArray *disp)

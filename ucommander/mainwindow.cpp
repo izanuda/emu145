@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 #if 0
     ui->r_destbox->addItem("---");

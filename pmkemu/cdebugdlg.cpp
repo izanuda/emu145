@@ -157,7 +157,7 @@ void cDebugDlg::setUCMD(unsigned char ucmd,QString disassm)
     ui->ucmddis->setText(str);
 }
 
-void cDebugDlg::setREGS(bool rm[],bool rr[],bool rst[],unsigned int rlen, unsigned int curi, unsigned int curu)
+void cDebugDlg::setREGS(bool rm[], bool rr[], bool rst[], unsigned int rlen, unsigned int curi, unsigned int curu)
 {
     unsigned char curm;
     unsigned char curr;

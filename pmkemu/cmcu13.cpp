@@ -6,8 +6,7 @@
 //  Copyright 2011 Felix Lazarev. All rights reserved.
 //
 #include "cmcu13.h"
-#include "cdebugdlg.h"
-#include "QFile"
+#include <QFile>
 
 const unsigned char jrom[42]={
     0,1,2,3,4,5,3,4,5,3,4,5,3,4,5,3,4,5,3,4,5,3,4,5,6,7,8,
@@ -67,7 +66,7 @@ void cMCU::init()
     rl=0;
     rt=0;
     was_t_qrd=false;
-    
+
     cptr=0;
 
 #if 0
@@ -97,7 +96,7 @@ void cMCU::init()
     if(debugme)
         dbg->setI(icount);
 #endif
-    
+
 
     command=cmdrom[cptr];
 #if 0
@@ -170,11 +169,11 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
             }
             else
             {
-                ucmd=asprom[(command>>16)&0x3f][jrom[icount]]; 
+                ucmd=asprom[(command>>16)&0x3f][jrom[icount]];
                 asp=(command>>16)&0x3f;
             }
         }
-   
+
     ucmd&=0x3f; //fool's proof
     if(ucmd>0x3b)
     {
@@ -184,7 +183,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
     }
     cur_ucmd=ucmd;
     u_command=ucrom[ucmd];
-    
+
     switch(u_command.bits.s1)
     {
         case 2:
@@ -240,7 +239,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
             rs1[0]=((((latchk2?1:0)<<3|(latchk1?1:0))>>ucount)&1)?true:false;
     }
 
-    
+
     if(u_command.bits.a_r)
         a|=rr[0];
 
@@ -262,10 +261,10 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
     if(u_command.bits.a_4)
         a|=(4>>ucount)&1;
 
-  
-    
-    
-    
+
+
+
+
     if(u_command.bits.b_1)
         b|=(1>>ucount)&1;
     if(u_command.bits.b_6)
@@ -276,7 +275,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
         b|=rs1[0];
     if(u_command.bits.b_ns)
         b|=!rs[0];
-    
+
     if(u_command.bits.g_l)
         g|=rl;
     if(u_command.bits.g_nl)
@@ -287,14 +286,14 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
     if(u_command.bits.g_nt)
          g|=!rt;
 
-    
-    if(ucount!=0) //gamma input -- 1 bit data or carry only. 
+
+    if(ucount!=0) //gamma input -- 1 bit data or carry only.
         g=carry;
-    
+
     sigma=a+b+g;
     carry=((sigma>>1)&1)?true:false;
     sigma&=1;
-    
+
     switch(u_command.bits.r0)
     {
         case 0:
@@ -351,7 +350,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
         newm0=rs[0];
     else
         newm0=rm[0];
-    
+
     switch(u_command.bits.s)
     {
         case 0:
@@ -373,7 +372,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
             rs1[3]=sigma|temp;
             break;
     }
-    
+
     switch(u_command.bits.s1)
     {
         case 0:
@@ -399,7 +398,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
             break;
 #endif
     }
-    
+
     switch(u_command.bits.st)
     {
         case 1:
@@ -422,19 +421,19 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
             rst[2*4]=x|y;
             break;
     }
-    
-    
+
+
     ret=newm0;
 
     for(i=0;i<(MCU_BITLEN-1);i++)
         rm[i]=rm[i+1];
     rm[MCU_BITLEN-1]=rin;
 
-    
+
 
     if((icount<36)&&(command&0xff000000))//mod flag -- do not modify R!!!
         newr0=rr[0];
-    
+
     for(i=0;i<(MCU_BITLEN-1);i++)
         rr[i]=rr[i+1];
     rr[MCU_BITLEN-1]=newr0;
@@ -449,12 +448,12 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
             dispout[i]=dispout[i+1];
         dispout[3]=newr0;
     }
-    
+
     temp=rst[0];
     for(i=0;i<(MCU_BITLEN-1);i++)
         rst[i]=rst[i+1];
     rst[MCU_BITLEN-1]=temp;
- 
+
 #if 0
     if(debugme)
     {
@@ -535,7 +534,7 @@ bool cMCU::tick(bool rin,bool k1, bool k2, unsigned int * dcycle, bool * syncout
     {
         dcount=0;
     }
-    
+
     //only needed for master - 1302
     if((dcycle)&&(syncout))
     {

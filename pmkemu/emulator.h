@@ -22,7 +22,7 @@ public:
 signals:
     void on_sync(QByteArray * disp);
 
-    
+
 public slots:
     void enable(bool en);
     void step(int count);
