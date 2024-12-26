@@ -16,8 +16,8 @@ CHARGE_MEM::CHARGE_MEM(int SIZE_MEM)
 
 CHARGE_MEM::~CHARGE_MEM()
 {
-	delete C;
-	delete Cbuff;
+    delete[] C;
+    delete[] Cbuff;
 }
 
 void CHARGE_MEM::ClearBuff(void)
