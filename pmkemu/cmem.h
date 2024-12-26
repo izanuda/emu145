@@ -9,7 +9,7 @@ public:
     cMem();
 
     void clear();
-    bool pretick(void);
+    bool pretick(void) const;
     bool tick(bool rm);
 
 private:

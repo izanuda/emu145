@@ -11,21 +11,18 @@ void cMem::clear()
         memarray[i] = false;
 }
 
-bool cMem::pretick()
+bool cMem::pretick() const
 {
     return memarray[0];
 }
 
 bool cMem::tick(bool rm)
 {
-    bool ret;
-    int i;
+    bool ret = memarray[0];
 
-    ret=memarray[0];
-
-    for(i=0;i<(MEM_BITLEN-1);i++)
-        memarray[i]=memarray[i+1];
-    memarray[MEM_BITLEN-1]=rm;
+    for(int i = 0; i < (MEM_BITLEN - 1) ; ++i)
+        memarray[i] = memarray[i + 1];
+    memarray[MEM_BITLEN - 1] = rm;
 
     return ret;
 }
