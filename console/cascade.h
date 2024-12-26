@@ -11,8 +11,9 @@
 
 class CASCADE
 {
-	public:
-	 virtual char get(void);
+public:
+    virtual ~CASCADE() = default;
+    virtual char get(void) const;
 };
 
 #endif
