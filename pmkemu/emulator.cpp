@@ -106,6 +106,9 @@ emulator::emulator(QObject *parent) :
 
 emulator::~emulator()
 {
+    m_active = false;
+    wait();
+
     delete dbg1302;
     delete dbg1303;
     delete dbg1306;
@@ -173,10 +176,12 @@ void emulator::run()
     //2 ms = real time
     //buttondly=0;
 
-    while(1)
+    m_active = true;
+
+    while(m_active)
     {
 
-        msleep(1);
+        //msleep(1);
         if(!enabled)
         {
             maxcycle=1;

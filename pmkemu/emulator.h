@@ -56,6 +56,7 @@ private:
     cDebugDlg * dbg1303;
     cDebugDlg * dbg1306;
 
+    bool m_active{true};
 };
 
 #endif // EMULATOR_H
