@@ -4,14 +4,14 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
 TARGET = ucommander
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+		mainwindow.cpp
 
 HEADERS  += mainwindow.h
 
